@@ -26,9 +26,9 @@ public class HomeController {
 		
 	}
 	
-	@PostMapping(path = "/hospitalDetails")
-	public HospitalDetails getHospital(@RequestBody String emailId) {
-		return svc.getDetails(emailId);
-		
-	}
+//	@PostMapping(path = "/hospitalDetails")
+//	public HospitalDetails getHospital(@RequestBody String emailId) {
+//		return svc.getDetails(emailId);
+//		
+//	}
 }

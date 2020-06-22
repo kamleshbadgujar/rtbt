@@ -1,5 +1,6 @@
 package com.rtbt.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -8,12 +9,12 @@ import javax.persistence.OneToOne;
 public class HospitalLogin {
 
 	@Id
+//	 @Column(name = "id")
 	private String email;
 	
 	private String password;
 
-	@OneToOne(mappedBy = "email")
-	private HospitalBeds bed;
+
 	
 	
 	

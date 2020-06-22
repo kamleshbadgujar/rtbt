@@ -9,9 +9,10 @@ import javax.persistence.OneToOne;
 @Entity
 public class HospitalBeds {
 	
+	@OneToOne
+	private HospitalLogin email;
+
 	@Id
-	private String email;
-	
 	private String HospitalName;
 	
 	private int totalICUBeds;
@@ -31,11 +32,11 @@ public class HospitalBeds {
 	private int reservedOxygenSupportedBeds;
 
 
-	public String getEmail() {
+	public HospitalLogin getEmail() {
 		return email;
 	}
 
-	public void setEmail(String email) {
+	public void setEmail(HospitalLogin email) {
 		this.email = email;
 	}
 
