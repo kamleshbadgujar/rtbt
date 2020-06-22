@@ -9,13 +9,21 @@ import javax.persistence.OneToOne;
 @Entity
 public class HospitalDetails {
 
-
-//	@OneToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(name = "email_id", referencedColumnName = "id")
-	@OneToOne
+	@Id
+	private Integer hospitalId;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "email_id", referencedColumnName = "id")
 	private HospitalLogin email;
 	
-	@Id
+	public Integer getHospitalId() {
+		return hospitalId;
+	}
+
+	public void setHospitalId(Integer hospitalId) {
+		this.hospitalId = hospitalId;
+	}
+
 	private String hospitalName;
 	
 	private String addressLineOne;

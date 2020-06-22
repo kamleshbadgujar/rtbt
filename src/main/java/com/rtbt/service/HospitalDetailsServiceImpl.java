@@ -17,9 +17,9 @@ public class HospitalDetailsServiceImpl implements HospitalDetailsService {
 	@Autowired
 	private HospitalDetailsRepository repo;
 	@Override
-	public HospitalDetails getDetails(String email) {
+	public HospitalDetails getDetails(Integer hospitalId) {
 		// TODO Auto-generated method stub
-		Optional<HospitalDetails> hospital = repo.findById(email);
+		Optional<HospitalDetails> hospital = repo.findById(hospitalId);
 		return hospital.get();
 	}
 
