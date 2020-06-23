@@ -1,16 +1,18 @@
 package com.rtbt.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-public class HospitalLogin {
+public class HospitalLogin implements Serializable {
 
 	@Id
 	@Column(name = "id")
-	private String email;
+	private String userName;
 	
 	private String password;
 	@OneToOne(mappedBy = "email")
@@ -18,13 +20,24 @@ public class HospitalLogin {
 	@OneToOne(mappedBy = "email")
 	HospitalBeds hospitalBeds;
 
-	public String getEmail() {
-		return email;
+	
+	public HospitalLogin()
+    {
+
+    }
+
+    public String getUserName() {
+		return userName;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
+
+	public HospitalLogin(String email, String password) {
+        this.setUserName(email);
+        this.setPassword(password);
+    }
 
 	public HospitalDetails getHospitalDetails() {
 		return hospitalDetails;
