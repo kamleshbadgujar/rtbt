@@ -15,11 +15,6 @@ public class HospitalLogin implements Serializable {
 	private String userName;
 	
 	private String password;
-	@OneToOne(mappedBy = "email")
-	HospitalDetails hospitalDetails;
-	@OneToOne(mappedBy = "email")
-	HospitalBeds hospitalBeds;
-
 	
 	public HospitalLogin()
     {
@@ -39,14 +34,6 @@ public class HospitalLogin implements Serializable {
         this.setPassword(password);
     }
 
-	public HospitalDetails getHospitalDetails() {
-		return hospitalDetails;
-	}
-
-	public void setHospitalDetails(HospitalDetails hospitalDetails) {
-		this.hospitalDetails = hospitalDetails;
-	}
-
 	public String getPassword() {
 		return password;
 	}
@@ -55,14 +42,6 @@ public class HospitalLogin implements Serializable {
 		this.password = password;
 	}
 	
-	public HospitalBeds getHospitalBeds() {
-		return hospitalBeds;
-	}
 
-	public void setHospitalBeds(HospitalBeds hospitalBeds) {
-		this.hospitalBeds = hospitalBeds;
-	}
-	
-	
 	
 }

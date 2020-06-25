@@ -2,6 +2,8 @@ package com.rtbt.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -10,20 +12,8 @@ import javax.persistence.OneToOne;
 public class HospitalDetails {
 
 	@Id
-	private Integer hospitalId;
+	private String email;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "email_id", referencedColumnName = "id")
-	private HospitalLogin email;
-	
-	public Integer getHospitalId() {
-		return hospitalId;
-	}
-
-	public void setHospitalId(Integer hospitalId) {
-		this.hospitalId = hospitalId;
-	}
-
 	private String hospitalName;
 	
 	private String addressLineOne;
@@ -42,11 +32,11 @@ public class HospitalDetails {
 	
 	private long secondaryPhoneNumber;
 
-	public HospitalLogin getEmail() {
+	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(HospitalLogin email) {
+	public void setEmail(String email) {
 		this.email = email;
 	}
 

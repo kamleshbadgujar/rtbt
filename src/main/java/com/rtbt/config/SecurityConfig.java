@@ -46,6 +46,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		httpSecurity.csrf().disable()
 				.authorizeRequests().antMatchers("/authenticate").permitAll().
 						antMatchers("/home").permitAll().
+						antMatchers("/hospital").permitAll().
+						antMatchers("/hospitalDetails").permitAll().
+						antMatchers("/hospitalBeds").permitAll().
+						antMatchers("/hospitalBedDetails").permitAll().
+						antMatchers("/updateBedDetails").permitAll().
+						antMatchers("/deleteBedDetails").permitAll().
+						antMatchers("/updateHospitalDetails").permitAll().
+						antMatchers("/deleteHospitalDetails").permitAll().
 						anyRequest().authenticated().and().
 						exceptionHandling().and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);

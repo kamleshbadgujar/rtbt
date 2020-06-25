@@ -1,0 +1,25 @@
+{
+    "email": "hosp3@email.com",
+    "hospitalName": "Fortis",
+    "addressLineOne": "ABCD",
+    "addressLineTwo": "QWERTYI",
+    "state": "Maharashtra",
+    "district": "Thane",
+    "city": "Thane",
+    "pinCode": 0,
+    "primaryPhoneNumber": 1245,
+    "secondaryPhoneNumber": 12466
+}
+
+{
+    "email": "hosp3@email.com",
+    "hospitalName": "Fortis",
+    "totalICUBeds": 100,
+    "avaialbleICUBeds": 79,
+    "reservedICUBeds": 2,
+    "totalNormalBeds": 150,
+    "availableNormalBeds": 15,
+    "totalOxygenSupportedBeds": 30,
+    "avialableOxygenSupportedBeds": 26,
+    "reservedOxygenSupportedBeds": 3
+}

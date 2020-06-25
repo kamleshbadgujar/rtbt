@@ -1,20 +1,27 @@
 package com.rtbt.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.rtbt.model.HospitalBeds;
 import com.rtbt.model.HospitalDetails;
 import com.rtbt.model.HospitalLogin;
 import com.rtbt.model.JwtToken;
+import com.rtbt.service.HospitalBedService;
 import com.rtbt.service.HospitalDetailsService;
 import com.rtbt.service.WebSecurityUserDetailsService;
 import com.rtbt.util.JwtUtil;
@@ -33,17 +40,16 @@ public class HomeController {
 	private WebSecurityUserDetailsService userDetailsService;
 	
 	@Autowired
-	private HospitalDetailsService svc;
+	private HospitalDetailsService hospitalDetailsService;
+	
+	@Autowired
+	private HospitalBedService hospitalBedService;
 
 	@RequestMapping("/home")
 	public void home() {
 		System.out.println("Hi At Home");
 	}
 	
-	@PostMapping(path = "/hospital")
-	public HospitalDetails addHospital(@RequestBody HospitalDetails details) {
-		return svc.addDetails(details);
-	}
 
 	@RequestMapping({ "/hello" })
 	public String firstPage() {
@@ -72,10 +78,49 @@ public class HomeController {
 		return ResponseEntity.ok(new JwtToken(jwt));
 	}
 
+	@PostMapping(path = "/hospital")
+	public HospitalDetails addHospital(@RequestBody HospitalDetails details) {
+		return hospitalDetailsService.addDetails(details);
+	}
 	
-//	@PostMapping(path = "/hospitalDetails")
-//	public HospitalDetails getHospital(@RequestBody String emailId) {
-//		return svc.getDetails(emailId);
-//		
-//	}
+	@GetMapping(path = "/hospitalDetails/{email}")
+	public HospitalDetails getHospital(@PathVariable String email) {
+		return hospitalDetailsService.getDetails(email);
+		
+	}
+	
+	@PutMapping(path = "/updateHospitalDetails")
+	public HospitalDetails updateHospitalDetails(@RequestBody HospitalDetails updatedDetails) {
+		return hospitalDetailsService.updateDetails(updatedDetails);
+	}
+	
+	@DeleteMapping(path = "/deleteHospitalDetails/{email}")
+	public HttpStatus deleteHospitalDetails(@PathVariable String email) {
+		hospitalDetailsService.deleteHospitalDetails(email);
+		return HttpStatus.OK;
+	}
+	
+	@PostMapping(path = "/hospitalBeds")
+	public HospitalBeds addHospitalBedDetails(@RequestBody HospitalBeds bedDetails) {
+		return hospitalBedService.addBedDetails(bedDetails);
+	}
+	
+	@GetMapping(path = "/hospitalBedDetails/{email}")
+	public HospitalBeds getHospitalBedDetails(@PathVariable String email) {
+		return hospitalBedService.getBedDetails(email);
+		
+	}
+	
+	@PutMapping(path = "/updateBedDetails")
+		public HospitalBeds updateBedDetails(@RequestBody HospitalBeds bedDetails) {
+			return hospitalBedService.updateBedDetails(bedDetails);
+			
+		}
+	
+	@DeleteMapping(path = "/deleteBedDetails/{email}")
+		public HttpStatus deleteBedDetails(@PathVariable String email) {
+		hospitalBedService.deleteBedDetails(email);
+		return HttpStatus.OK;
+	}
+	
 }

@@ -11,22 +11,44 @@ import com.rtbt.model.HospitalDetails;
 import com.rtbt.model.HospitalLogin;
 
 @Service
-@Transactional
 public class HospitalDetailsServiceImpl implements HospitalDetailsService {
 
 	@Autowired
 	private HospitalDetailsRepository repo;
 	@Override
-	public HospitalDetails getDetails(Integer hospitalId) {
-		// TODO Auto-generated method stub
-		Optional<HospitalDetails> hospital = repo.findById(hospitalId);
+	public HospitalDetails getDetails(String email) {
+		Optional<HospitalDetails> hospital = repo.findById(email);
 		return hospital.get();
 	}
 
 	@Override
 	public HospitalDetails addDetails(HospitalDetails details) {
-		// TODO Auto-generated method stub
 		return repo.save(details);
+	}
+
+	@Override
+	public void deleteHospitalDetails(String email) {
+		Optional<HospitalDetails> hospital = repo.findById(email);
+		repo.delete(hospital.get());		
+	}
+
+	@Override
+	public HospitalDetails updateDetails(HospitalDetails updatedDetails) {
+		Optional<HospitalDetails> details = repo.findById(updatedDetails.getEmail());
+		if(details.isPresent()) {
+			HospitalDetails newDetails = details.get();
+			newDetails.setHospitalName(updatedDetails.getHospitalName());
+			newDetails.setAddressLineOne(updatedDetails.getAddressLineOne());
+			newDetails.setAddressLineTwo(updatedDetails.getAddressLineTwo());
+			newDetails.setState(updatedDetails.getState());
+			newDetails.setDistrict(updatedDetails.getDistrict());
+			newDetails.setCity(updatedDetails.getCity());
+			newDetails.setPinCode(updatedDetails.getPinCode());
+			newDetails.setPrimaryPhoneNumber(updatedDetails.getPrimaryPhoneNumber());
+			newDetails.setSecondaryPhoneNumber(updatedDetails.getSecondaryPhoneNumber());
+			return newDetails;
+		}
+		return null;
 	}
 
 }

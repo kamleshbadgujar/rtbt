@@ -5,7 +5,11 @@ import com.rtbt.model.HospitalLogin;
 
 public interface HospitalDetailsService {
 
-	HospitalDetails getDetails(Integer hospitalId);
+	public HospitalDetails getDetails(String email);
 	
-	HospitalDetails addDetails(HospitalDetails details);
+	public HospitalDetails addDetails(HospitalDetails details);
+
+	public void deleteHospitalDetails(String email);
+	
+	public HospitalDetails updateDetails(HospitalDetails updatedDetails);
 }
